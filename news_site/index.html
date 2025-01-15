@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>En Son Haberler</h1>
+    <div class="row">
+        {% for news in latest_news_list %}
+            <div class="col-md-4">
+                <h2><a href="{% url 'detail' news.id %}">{{ news.title }}</a></h2>
+                {% if news.image %}
+                    <img src="{{ news.image.url }}" class="img-fluid">
+                {% endif %}
+                <p>{{ news.content|truncatewords:30 }}</p>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
